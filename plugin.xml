@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" 
+	id="org.pluginporo.barcode_scan_plugin" 
+	version="0.0.1">
+
+	<name>Barcode Scan Plugin</name>
+	<description>Barcode Scan Plugin for Cordova</description>
+	<license>Apache 2.0</license>
+	<keywords>cordova, 1d barcode, 2d barcode, pdf417 barcode, plugin, camera</keywords>
+
+	<js-module src="www/barcode_scan_plugin.js" name="BarcodeScanPlugin">
+		<clobbers target="navigator.barcode_scan_plugin" />
+	</js-module>
+
+	<!-- android -->
+	<platform name="android">
+		<config-file target="AndroidManifest.xml" parent="/*">
+			<uses-permission android:name="android.permission.CAMERA" />
+			<uses-permission android:name="android.permission.FLASHLIGHT" />
+			<uses-feature android:name="android.hardware.camera" />
+			<uses-feature android:name="android.hardware.camera.autofocus" />
+			<uses-feature android:name="android.hardware.camera.flash" />
+		</config-file>
+
+		<config-file target="AndroidManifest.xml" parent="/manifest/application">
+			<!-- pdf417 -->
+			<activity android:name="mobi.pdf417.activity.Pdf417ScanActivity"
+	            android:screenOrientation="portrait" >
+	            <intent-filter>
+	                <action android:name="mobi.pdf417.activity.Pdf417ScanActivity" />
+	                <category android:name="android.intent.category.DEFAULT" />
+	            </intent-filter>
+	        </activity>
+        </config-file>
+
+        <source-file src="src/android/libs/pdf417/libs/armeabi/libPhotoPayBarcode.so" target-dir="libs/armeabi" />
+        <source-file src="src/android/libs/pdf417/libs/armeabi-v7a/libPhotoPayBarcode.so" target-dir="libs/armeabi-v7a" />
+        <source-file src="src/android/libs/pdf417/libs/x86/libPhotoPayBarcode.so" target-dir="libs/x86" />
+		<source-file src="src/android/libs/pdf417/libs/Pdf417MobiSdk.jar" target-dir="libs"/>
+		<source-file src="src/android/libs/pdf417/libs/android-support-v13.jar" target-dir="libs"/>
+		<source-file src="src/android/libs/pdf417/res/drawable/photopay_button.xml" target-dir="res/drawable" />
+		<source-file src="src/android/libs/pdf417/res/drawable/rounded_border.xml" target-dir="res/drawable" />
+		<source-file src="src/android/libs/pdf417/res/drawable-hdpi/lightoff.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/libs/pdf417/res/drawable-hdpi/lighton.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/libs/pdf417/res/drawable-hdpi/title.png" target-dir="res/drawable-hdpi" />
+		<source-file src="src/android/libs/pdf417/res/drawable-hdpi/lightoff.png" target-dir="res/drawable-ldpi" />
+		<source-file src="src/android/libs/pdf417/res/drawable-hdpi/lighton.png" target-dir="res/drawable-ldpi" />
+		<source-file src="src/android/libs/pdf417/res/layout/camera_splash.xml" target-dir="res/layout" />
+		<source-file src="src/android/libs/pdf417/res/layout/default_barcode_camera_overlay.xml" target-dir="res/layout" />
+		<source-file src="src/android/libs/pdf417/res/values/colors.xml" target-dir="res/values" />
+        <config-file target="res/values/strings.xml" parent="/resources">
+			<string name="photopay">PhotoPay Barcode</string>
+			<string name="photopayHome">Back</string>
+			<string name="photopayLightOff">Light</string>
+			<string name="photopayLightOn">Light</string>
+			<string name="scanBarcode">Start barcode scanning</string>
+			<string name="photopayOK">OK</string>
+			<string name="photopayHelpImageDescription">Description</string>
+			<string name="photopayWarningTitle">Warning</string>
+			<string name="FeatureUnsuportedAutofocus">This feature is not supported on phones without autofocus</string>
+			<string name="FeatureUnsuportedAndroidVersion">This feature is supported for Android 2.1 and newer</string>
+			<string name="FeatureUnsuportedDevice">PDF417.mobi is not supported because of the technical properties of your device</string>
+			<string name="photopayErrorInitializing">Failed to initialize native library.</string>
+			<string name="photopayCameraNotReady">Camera not ready.</string>
+			<string name="InvalidLicense">Invalid license key!</string>
+			<string name="CustomUIForbidden">License does not permit custom camera overlay!</string>
+			<string name="PPCancel">Cancel</string>
+			<string name="PPUse">Use</string>
+			<string name="Copy">Copy</string>
+			<string name="ResultList">List of scan results</string>
+			<string name="Copied">Text copied to clipboard</string>
+        </config-file>
+
+
+		<config-file target="res/xml/config.xml" parent="/*">
+			<feature name="BarcodeScanPlugin">
+				<param name="android-package" value="org.pluginporo.barcodescan.BarcodeScanPlugin" />
+			</feature>
+		</config-file>
+
+<!-- 		<source-file src="src/android/aamva/Decoder.java" target-dir="src/org/pluginporo/barcodescan/aamva" />
+		<source-file src="src/android/aamva/DriverLicense.java" target-dir="src/org/pluginporo/barcodescan/aamva" /> -->
+		<source-file src="src/android/BarcodeScanPlugin.java" target-dir="src/org/pluginporo/barcodescan" />
+
+
+	</platform>
+
+</plugin>

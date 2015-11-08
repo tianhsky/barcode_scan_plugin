@@ -1,4 +1,4 @@
-Cordova PDF417/QRCode Barcode Scan Plugin
+(Deprecated) Cordova PDF417/QRCode Barcode Scan Plugin
 ==============
 
 PDF417/QRCode Barcode Scan Plugin for Cordova / PhoneGap.
